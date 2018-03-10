@@ -24,8 +24,7 @@ head(SCC)
 Subset_Baltimore_fips <- NEI[NEI$fips == "24510",]
 
 #Aggregate Baltimore's total emissions by year
-
-Aggregate_Total_Emissions_by_year <- aggregate(Emissions ~ year, NEI, sum)
+Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimore_fips, sum)
 
 #Construct the plot and save it to a PNG file.
 #Create a separate R code file (plot1.R, plot2.R, etc.) that constructs the corresponding plot, i.e. code in plot1.R 
