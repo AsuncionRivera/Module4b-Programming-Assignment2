@@ -31,9 +31,9 @@ Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimor
 #constructs the plot1.png plot. Your code file should include code for reading the data so that the plot can be fully reproduced. 
 #You must also include the code that creates the PNG file. Only include the code for a single plot (i.e. plot1.R should only include 
 #code for producing plot1.png)
-png("plot1.png", width=480, height=480)
-barplot((Aggregate_Total_Emissions_by_year$Emissions)/10^6, names.arg = Aggregate_Total_Emissions_by_year$year, 
-        xlab="Year", ylab="PM2.5 Emission (/10^6)", main = "Total PM 2.5 Emission From All Sources")
+png("plot2.png", width=480, height=480)
+barplot((Aggregate_Baltimore_Total_by_year$Emissions), names.arg = Aggregate_Baltimore_Total_by_year$year, 
+        xlab="Year", ylab="PM2.5 Emission", main = "Total PM 2.5 Emission From Baltimore")
         
 #Don't forget to close
 dev.off()
