@@ -1,7 +1,3 @@
-#Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources 
-#have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? 
-#Use the ggplot2 plotting system to make a plot answer this question.
-
 #You can read each of the two files using the readRDS() function in R. For example, reading in each file can be 
 #done with the following code:
 # This first line will likely take a few seconds. Be patient!
@@ -21,8 +17,9 @@ if(!exists("SCC")){
 head(NEI)
 head(SCC)
 
-#Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008? 
-#Use the base plotting system to make a plot answering this question.
+#Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources 
+#have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? 
+#Use the ggplot2 plotting system to make a plot answer this question.
 
 #Subset Baltimore City, Maryland (fips == "24510") from 1999 to 2008
 Subset_Baltimore_fips <- NEI[NEI$fips == "24510",]
