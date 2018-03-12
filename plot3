@@ -36,7 +36,7 @@ Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimor
 library(ggplot2)
 png("plot3.png", width=480, height=480)
 Baltimore_ggplot <-ggplot(Subset_Baltimore_fips, aes(factor(year), Emissions, fill=type)) +
-                   geom_line() +
+                   geom_bar(stat="identity") +
                    labs(x="year", y="Total PM2.5 Emission") +
                    labs(title="Emissions In Baltimore City from 1999-2008")
 print(Baltimore_ggplot)
