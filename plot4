@@ -1,1 +1,51 @@
 #Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+
+#You can read each of the two files using the readRDS() function in R. For example, reading in each file can be 
+#done with the following code:
+# This first line will likely take a few seconds. Be patient!
+#NEI <- readRDS("summarySCC_PM25.rds")
+#SCC <- readRDS("Source_Classification_Code.rds")
+
+#Set working directory
+setwd("D:/DOST Coursera/Module 4b/Week 4")
+if(!exists("NEI")){
+    NEI <- readRDS("summarySCC_PM25.rds")
+}
+if(!exists("SCC")){
+  SCC <- readRDS("Source_Classification_Code.rds")
+}
+
+#Check if readRDS() is successful
+head(NEI)
+head(SCC)
+
+#Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources 
+#have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? 
+
+#Subset Baltimore City, Maryland (fips == "24510") from 1999 to 2008
+Subset_Baltimore_fips <- NEI[NEI$fips == "24510",]
+
+#Aggregate Baltimore's total emissions by year
+Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimore_fips, sum)
+
+#Construct the plot and save it to a PNG file.
+#Create a separate R code file (plot1.R, plot2.R, etc.) that constructs the corresponding plot, i.e. code in plot1.R 
+#constructs the plot1.png plot. Your code file should include code for reading the data so that the plot can be fully reproduced. 
+#You must also include the code that creates the PNG file. Only include the code for a single plot (i.e. plot1.R should only include 
+#code for producing plot1.png)
+
+#Use the ggplot2 plotting system to make a plot answer this question.
+library(ggplot2)
+png("plot3.png", width=480, height=480)
+Baltimore_ggplot <-ggplot(Subset_Baltimore_fips, aes(factor(year), Emissions, fill=type)) +
+                   geom_bar(stat="identity") +
+                   guides(fill=FALSE) +
+                   facet_grid(.~type, scales = "free", space= "free") +
+                   labs(x="year", y="Total PM2.5 Emission") +
+                   labs(title="Emissions In Baltimore City from 1999-2008")
+print(Baltimore_ggplot)
+
+#Don't forget to close
+dev.off()
+
+
