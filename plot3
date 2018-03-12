@@ -38,7 +38,7 @@ png("plot3.png", width=480, height=480)
 Baltimore_ggplot <-ggplot(Subset_Baltimore_fips, aes(factor(year), Emissions, fill=type)) +
                    geom_bar(stat="identity") +
                    #guides(fill=FALSE) +
-                   facet_grid(.~type, scales = "free")
+                   facet_grid(.~type, scales = "free") +
                    labs(x="year", y="Total PM2.5 Emission") +
                    labs(title="Emissions In Baltimore City from 1999-2008")
 print(Baltimore_ggplot)
