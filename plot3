@@ -39,7 +39,7 @@ Baltimore_ggplot <-ggplot(Subset_Baltimore_fips, aes(factor(year), Emissions, fi
                    geom_line() +
                    labs(x="year", y="Total PM2.5 Emission") +
                    labs(title="Emissions In Baltimore City from 1999-2008")
-print_gg <- Baltimore_ggplot + geom_point()
+print(Baltimore_ggplot)
 
 #Don't forget to close
 dev.off()
