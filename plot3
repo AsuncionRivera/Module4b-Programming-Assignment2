@@ -19,7 +19,6 @@ head(SCC)
 
 #Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources 
 #have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? 
-#Use the ggplot2 plotting system to make a plot answer this question.
 
 #Subset Baltimore City, Maryland (fips == "24510") from 1999 to 2008
 Subset_Baltimore_fips <- NEI[NEI$fips == "24510",]
@@ -32,10 +31,13 @@ Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimor
 #constructs the plot1.png plot. Your code file should include code for reading the data so that the plot can be fully reproduced. 
 #You must also include the code that creates the PNG file. Only include the code for a single plot (i.e. plot1.R should only include 
 #code for producing plot1.png)
-png("plot2.png", width=480, height=480)
-barplot((Aggregate_Baltimore_Total_by_year$Emissions), names.arg = Aggregate_Baltimore_Total_by_year$year, 
-        xlab="Year", ylab="PM2.5 Emission", main = "Total PM 2.5 Emission From Baltimore")
-        
+
+#Use the ggplot2 plotting system to make a plot answer this question.
+library(ggplot2)
+png("plot3.png", width=480, height=480)
+Baltimore_ggplot <-ggplot(Subset_Baltimore_fips, aes(year, Emissions))
+print_gg <- Baltimore_ggplot + geom_point()
+
 #Don't forget to close
 dev.off()
 
