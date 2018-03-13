@@ -46,7 +46,7 @@ png("plot4.png", width=480, height=480)
 Coal_ggplot <-ggplot(Aggregate_Coal_Combustion, aes(factor(year), Emissions/(10^5))) +
                    geom_bar(stat="identity") +
                    labs(x="year", y="Total PM2.5 Emission(/10^5)") +
-                   labs(title="Coal Combustion Emission from 1999-2008")
+                   labs(title="Coal Combustion Emission Across the United States From 1999-2008")
 print(Coal_ggplot)
 
 #Don't forget to close
