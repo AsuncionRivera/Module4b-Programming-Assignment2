@@ -43,11 +43,11 @@ Aggregate_BaltiLA_onroad_Total_by_year <- aggregate(Emissions ~ year, Subset_Bal
 
 #Use the ggplot2 plotting system to make a plot answer this question.
 
-png("plot6.png", width=480, height=480)
-Balti_vs_LA_ggplot <-ggplot(Aggregate_BaltiLA_onroad_Total_by_year, aes(factor(year), Emissions, fill=type)) +
+png("plot6.png", width=1040, height=480)
+Balti_vs_LA_ggplot <-ggplot(Aggregate_BaltiLA_onroad_Total_by_year, aes(factor(year), Emissions)) +
                    geom_bar(stat="identity") +
-                   #guides(fill=FALSE) +
-                   #facet_grid(.~type, scales = "free", space= "free") +
+                   guides(fill=FALSE) +
+                   facet_grid(.~type, scales = "free", space= "free") +
                    labs(x="year", y="Total PM2.5 Emission") +
                    labs(title="Motor Vehicle Sources Emission in Baltimore City vs. Los Angeles County From 1999-2008")
                    
