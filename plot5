@@ -42,11 +42,11 @@ Aggregate_Baltimore_onroad_Total_by_year <- aggregate(Emissions ~ year, Subset_B
 #Use the ggplot2 plotting system to make a plot answer this question.
 
 png("plot5.png", width=480, height=480)
-onroad_ggplot <-ggplot(Aggregate_Baltimore_onroad_Total_by_year, aes(factor(year), Emissions/(10^5))) +
+onroad_ggplot <-ggplot(Aggregate_Baltimore_onroad_Total_by_year, aes(factor(year), Emissions)) +
                    geom_bar(stat="identity") +
-                   labs(x="year", y="Total PM2.5 Emission(/10^5)") +
+                   labs(x="year", y="Total PM2.5 Emission") +
                    labs(title="Motor Vehicle Sources Emission in Baltimore City From 1999-2008")
-print(Coal_ggplot)
+print(onroad_ggplot)
 
 #Don't forget to close
 dev.off()
