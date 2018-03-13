@@ -1,5 +1,3 @@
-#Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
-
 #You can read each of the two files using the readRDS() function in R. For example, reading in each file can be 
 #done with the following code:
 # This first line will likely take a few seconds. Be patient!
@@ -19,11 +17,20 @@ if(!exists("SCC")){
 head(NEI)
 head(SCC)
 
-#Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources 
-#have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? 
+library(ggplot2)
 
-#Subset Baltimore City, Maryland (fips == "24510") from 1999 to 2008
-Subset_Baltimore_fips <- NEI[NEI$fips == "24510",]
+#Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+
+#Merge the two datasets first, by SCC
+merged_NEI_SCC <- merge(NEI, SCC, by="SCC")
+
+#Check if successfully merged
+head(merged_NEI_SCC)
+
+
+
+#Subset coal combustion-related data
+Coal_Combustion_Related <- grep1("coal"
 
 #Aggregate Baltimore's total emissions by year
 Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimore_fips, sum)
@@ -35,7 +42,7 @@ Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimor
 #code for producing plot1.png)
 
 #Use the ggplot2 plotting system to make a plot answer this question.
-library(ggplot2)
+
 png("plot3.png", width=480, height=480)
 Baltimore_ggplot <-ggplot(Subset_Baltimore_fips, aes(factor(year), Emissions, fill=type)) +
                    geom_bar(stat="identity") +
