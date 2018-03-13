@@ -27,10 +27,9 @@ merged_NEI_SCC <- merge(NEI, SCC, by="SCC")
 #Check if successfully merged
 head(merged_NEI_SCC)
 
-
-
 #Subset coal combustion-related data
-Coal_Combustion_Related <- grep1("coal"
+Coal_Combustion_Related <- grepl("Coal", merged_NEI_SCC$Short.Name, ignore.case=TRUE
+Subset_NEI_SSC <- merged_NEI_SCC[Coal_Combustion_Related, ]
 
 #Aggregate Baltimore's total emissions by year
 Aggregate_Baltimore_Total_by_year <- aggregate(Emissions ~ year, Subset_Baltimore_fips, sum)
