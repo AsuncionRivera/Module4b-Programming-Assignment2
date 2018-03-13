@@ -49,9 +49,6 @@ Coal_ggplot <-ggplot(Aggregate_Coal_Combustion, aes(factor(year), Emissions/(10^
                    labs(title="Coal Combustion Emission from 1999-2008")
 print(Coal_ggplot)
 
-barplot((Aggregate_Total_Emissions_by_year$Emissions)/10^6, names.arg = Aggregate_Total_Emissions_by_year$year, 
-        xlab="Year", ylab="PM2.5 Emission (/10^6)", main = "Total PM 2.5 Emission From All Sources")
-
 #Don't forget to close
 dev.off()
 
