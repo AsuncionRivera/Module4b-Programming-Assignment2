@@ -18,6 +18,7 @@ Year : 1999, 2002, 2005 and 2008
 
 Unit of measure : tons
 
+Terms :
 
 fips: A five-digit number (represented as a string) indicating the U.S. county
 
