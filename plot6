@@ -33,7 +33,9 @@ head(merged_NEI_SCC)
 Subset_BaltiLA_onroad_fips <- NEI[NEI$fips == "24510" | NEI$fips == "06037" & NEI$type=="ON-ROAD",]
 
 #Aggregate Baltimore's and LA's total emissions by year
-Aggregate_BaltiLA_onroad_Total_by_year <- aggregate(Emissions ~ year, Subset_BaltiLA_onroad_fips, sum)
+Aggregate_BaltiLA_onroad_Total_by_year <- aggregate(Emissions ~ year + fips, Subset_BaltiLA_onroad_fips, sum)
+Aggregate_BaltiLA_onroad_Total_by_year$fips[Aggregate_BaltiLA_onroad_Total_by_year$fips == "24510"] <- "Baltimore City"
+Aggregate_BaltiLA_onroad_Total_by_year$fips[Aggregate_BaltiLA_onroad_Total_by_year$fips == "06037"] <- "Los Angeles County"
 
 #Construct the plot and save it to a PNG file.
 #Create a separate R code file (plot1.R, plot2.R, etc.) that constructs the corresponding plot, i.e. code in plot1.R 
@@ -43,11 +45,11 @@ Aggregate_BaltiLA_onroad_Total_by_year <- aggregate(Emissions ~ year, Subset_Bal
 
 #Use the ggplot2 plotting system to make a plot answer this question.
 
-png("plot6.png", width=1040, height=480)
+png("plot6.png", width=480, height=480)
 Balti_vs_LA_ggplot <-ggplot(Aggregate_BaltiLA_onroad_Total_by_year, aes(factor(year), Emissions, fill=city)) +
                    geom_bar(aes(fill=year), stat="identity") +
                    guides(fill=FALSE) +
-                   facet_grid(scales = "free", space= "free", .~city) +
+                   facet_grid(scales = "free", space= "free", ~fips) +
                    labs(x="year", y="Total PM2.5 Emission") +
                    labs(title="Motor Vehicle Sources Emission in Baltimore City vs. Los Angeles County From 1999-2008")
                    
